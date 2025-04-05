@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trading Card Store</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Trading Card Store</h1>
+        <nav>
+            <a href="index.php">Home</a> |
+            <a href="cart.php">View Cart</a>
+        </nav>
+    </header>
+    <main>
