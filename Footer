@@ -1,0 +1,6 @@
+  </main>
+    <footer>
+        <p>&copy; <?= date('Y') ?> Trading Card Store</p>
+    </footer>
+</body>
+</html>
