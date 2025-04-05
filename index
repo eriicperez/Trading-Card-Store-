@@ -1,0 +1,22 @@
+<?php session_start(); ?>
+<?php include('inc/header.php'); ?>
+<?php include('data/products.php'); ?>
+
+<h2>Available Products</h2>
+<ul class="product-list">
+    <?php foreach ($products as $id => $product): ?>
+        <li>
+            <form action="cart.php" method="post">
+                <h3><?= htmlspecialchars($product['name']) ?></h3>
+                <p>Price: $<?= number_format($product['price'], 2) ?></p>
+                <input type="hidden" name="product_id" value="<?= $id ?>">
+                <label>Quantity:
+                    <input type="number" name="quantity" value="1" min="1">
+                </label>
+                <button type="submit">Add to Cart</button>
+            </form>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+<?php include('inc/footer.php'); ?>
