@@ -1,0 +1,38 @@
+<?php session_start();
+include('data/products.php');
+
+$name = htmlspecialchars($_POST['name'] ?? '');
+$email = htmlspecialchars($_POST['email'] ?? '');
+$address = nl2br(htmlspecialchars($_POST['address'] ?? ''));
+$cart = $_SESSION['cart'] ?? [];
+$total = 0;
+unset($_SESSION['cart']);
+
+include('inc/header.php');
+?>
+
+<h2>Thank You for Your Order!</h2>
+
+<p><strong>Name:</strong> <?= $name ?></p>
+<p><strong>Email:</strong> <?= $email ?></p>
+<p><strong>Address:</strong><br><?= $address ?></p>
+
+<h3>Order Summary</h3>
+<?php if (!empty($cart)): ?>
+    <ul>
+        <?php foreach ($cart as $id => $qty):
+            $product = $products[$id];
+            $line = $product['price'] * $qty;
+            $total += $line;
+        ?>
+            <li><?= htmlspecialchars($product['name']) ?> (x<?= $qty ?>) - $<?= number_format($line, 2) ?></li>
+        <?php endforeach; ?>
+    </ul>
+    <p><strong>Total Paid:</strong> $<?= number_format($total, 2) ?></p>
+<?php else: ?>
+    <p>No items found in your cart (possibly already cleared).</p>
+<?php endif; ?>
+
+<a href="index.php"><button>Back to Store</button></a>
+
+<?php include('inc/footer.php'); ?>
