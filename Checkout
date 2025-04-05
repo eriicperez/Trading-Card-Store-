@@ -1,0 +1,44 @@
+<?php session_start();
+include('data/products.php');
+$cart = $_SESSION['cart'] ?? [];
+include('inc/header.php');
+?>
+
+<h2>Checkout</h2>
+
+<?php if (empty($cart)): ?>
+    <p>Your cart is empty. <a href="index.php">Go shop</a></p>
+<?php else: ?>
+    <form action="confirm.php" method="post">
+        <fieldset>
+            <legend>Customer Information</legend>
+            <label>Name:
+                <input type="text" name="name" required>
+            </label><br><br>
+            <label>Email:
+                <input type="email" name="email" required>
+            </label><br><br>
+            <label>Address:
+                <textarea name="address" rows="4" required></textarea>
+            </label>
+        </fieldset>
+
+        <h3>Order Summary</h3>
+        <ul>
+            <?php
+            $total = 0;
+            foreach ($cart as $id => $qty):
+                $product = $products[$id];
+                $line = $product['price'] * $qty;
+                $total += $line;
+            ?>
+                <li><?= htmlspecialchars($product['name']) ?> (x<?= $qty ?>) - $<?= number_format($line, 2) ?></li>
+            <?php endforeach; ?>
+        </ul>
+
+        <p><strong>Total:</strong> $<?= number_format($total, 2) ?></p>
+        <button type="submit">Place Order</button>
+    </form>
+<?php endif; ?>
+
+<?php include('inc/footer.php'); ?>
