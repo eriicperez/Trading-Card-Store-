@@ -1,0 +1,8 @@
+<?php
+$products = [
+    1 => ['name' => 'Pikachu Holo Card', 'price' => 4.99],
+    2 => ['name' => 'Deck Protector Sleeves (50)', 'price' => 7.99],
+    3 => ['name' => 'Card Binder - 9 Pocket', 'price' => 14.99],
+    4 => ['name' => 'Booster Pack - Random', 'price' => 3.99],
+];
+?>
